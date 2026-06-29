@@ -1,0 +1,8 @@
+#!/bin/env bash
+
+# Run this script before starting the server
+
+mkdir ./data
+
+cp -r ./overrides/kubejs/* ./data/kubejs/
+cp -r ./overrides/defaultconfigs/* ./data/defaultconfigs

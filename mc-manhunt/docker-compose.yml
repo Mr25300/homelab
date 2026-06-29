@@ -1,0 +1,38 @@
+services:
+  server:
+    image: itzg/minecraft-server:latest
+    labels:
+      mc-router.host: supplies-unwell.gl.joinmc.link,supplies-unwell.gl.at.ply.gg
+    environment: # https://docker-minecraft-server.readthedocs.io/en/latest/variables/#rcon
+      EULA: "TRUE"
+      TYPE: "SPIGOT" # For plugins
+      VERSION: "26.1.2"
+      INIT_MEMORY: "4G"
+      MAX_MEMORY: "8G"
+
+      VIEW_DISTANCE: "12"
+      SIMULATION_DISTANCE: "12"
+
+      MOTD: "Sebastian's Manhunt Server"
+      ENABLE_WHITELIST: "true"
+      WHITELIST: "AwesomeFeet313,AKAPVP66,Ginormous_G,shubabidi,ultra_exdi"
+      OPS: "AwesomeFeet313"
+      EXISTING_OPS_FILE: "MERGE"
+      EXISTING_WHITELIST_FILE: "MERGE"
+    volumes:
+      - ./data:/data
+      - ./plugins:/plugins:ro
+    restart: no
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        limits:
+          memory: 9G
+          cpus: '2'
+    networks:
+      - mc-net
+
+networks:
+  mc-net:
+    external: true

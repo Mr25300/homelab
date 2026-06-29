@@ -1,0 +1,24 @@
+#!/bin/env bash
+
+source .env
+
+USER_ID=1234
+GAME_ID=15826698411
+
+DESCRIPTION="You have received a new notification for Right to Erasure for the User Id: ${USER_ID} in the game(s) with Ids: ${GAME_ID}"
+TIMESTAMP=$(date +%s)
+TIMESTAMP_MESSAGE="${TIMESTAMP}.${DESCRIPTION}"
+SIGNATURE=$(echo -n "$TIMESTAMP_MESSAGE" |
+    openssl dgst -sha256 -hmac "$ROBLOX_WEBHOOK_SECRET" --binary | base64)
+
+curl -X POST "$DISCORD_WEBHOOK_URL" -H "Content-Type: application/json" -d '{
+    "username": "Roblox Webhooks (Test)",
+    "embeds": [{
+        "title":"RightToErasureRequest",
+        "color":"10180863",
+        "description":"You have received a new notification for Right to Erasure for the User Id: '$USER_ID' in the game(s) with Ids: '$GAME_ID'",
+        "footer":{
+            "text":"Roblox-Signature: '$SIGNATURE', Timestamp: '$TIMESTAMP'"
+        }
+    }]
+}'

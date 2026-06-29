@@ -1,0 +1,28 @@
+{
+    "global": {
+        "allowlist": [
+            {"name": "AwesomeFeet313"}
+        ]
+    },
+
+    "servers": {
+        "zodiac-timeline.gl.at.ply.gg.": {
+            "allowlist": [
+                {"name": "AKAPVP66"},
+                {"name": "Ginormous_G"},
+                {"name": "shubabidi"},
+                {"name": "ultra_exdi"},
+                {"name": "Mineor23"}
+            ]
+        },
+
+        "records-armor.gl.at.ply.gg.": {
+            "allowlist": [
+                {"name": "AKAPVP66"},
+                {"name": "Ginormous_G"},
+                {"name": "shubabidi"},
+                {"name": "Mineor23"}
+            ]
+        }
+    }
+}

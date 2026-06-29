@@ -1,0 +1,43 @@
+services:
+  server:
+    image: itzg/minecraft-server:latest
+    labels:
+      mc-router.host: low-wondering.gl.joinmc.link,low-wondering.gl.at.ply.gg
+    environment: # https://docker-minecraft-server.readthedocs.io/en/latest/variables/#rcon
+      EULA: "TRUE"
+      TYPE: "AUTO_CURSEFORGE"
+      CF_API_KEY: ${CF_API_KEY}
+      CF_MODPACK_MANIFEST: /manifests/manifest.json
+      CF_SLUG: "custom"
+
+      INIT_MEMORY: "4G"
+      MAX_MEMORY: "8G"
+
+      VIEW_DISTANCE: "12"
+      SIMULATION_DISTANCE: "12"
+
+      MOTD: "Nik Hunting Time"
+      ENABLE_WHITELIST: "true"
+      WHITELIST: "AwesomeFeet313,AKAPVP66,Ginormous_G,shubabidi,Mineor23,ultra_exdi"
+      OPS: "AwesomeFeet313"
+      EXISTING_WHITELIST_FILE: "MERGE"
+      EXISTING_OPS_FILE: "MERGE"
+      ALLOW_FLIGHT: "true" # For mods
+    volumes:
+      - ./data:/data
+      - ./manifests:/manifests:ro
+      - ./overrides/config:/config:ro
+    restart: no
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        limits:
+          memory: 9G
+          cpus: '2'
+    networks:
+      - mc-net
+
+networks:
+  mc-net:
+    external: true
