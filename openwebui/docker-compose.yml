@@ -1,18 +1,22 @@
+name: openwebui
+
 services:
-  openwebui:
+  openwebui: # Port 8080
     image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
-    # ports:
-    #   - "3000:8080"
-    network_mode: "host"
     environment:
-      PORT: 3000
-      OLLAMA_BASE_URL: http://127.0.0.1:11434
+      # OLLAMA_BASE_URL: http://127.0.0.1:11434
       WEBUI_SECRET_KEY: ${WEBUI_SECRET_KEY}
-      WEBUI_URL: http://127.0.0.1:3000
+      WEBUI_URL: https://openwebui.gls.sebastiancooper.com
     volumes:
       - open-webui:/app/backend/data
+    networks:
+      - gls
     restart: unless-stopped
 
 volumes:
   open-webui:
+
+networks:
+  gls:
+    external: true

@@ -4,25 +4,34 @@
 name: searxng
 
 services:
-  core:
-    container_name: searxng-core
-    image: docker.io/searxng/searxng:${SEARXNG_VERSION:-latest}
-    restart: always
-    ports:
-      - ${SEARXNG_HOST:+${SEARXNG_HOST}:}${SEARXNG_PORT:-8080}:${SEARXNG_PORT:-8080}
-    env_file: ./.env
+  core: # Port 8080
+    image: docker.io/searxng/searxng:latest
+    container_name: searxng
+    env_file: .env # Provides SEARXNG_SECRET (overwrites config/settings.yml)
+    user: "1000:1000"
     volumes:
-      - ./core-config/:/etc/searxng/:Z
+      - ./config/:/etc/searxng/:ro
       - core-data:/var/cache/searxng/
+    networks:
+      - internal
+      - gls
+    restart: unless-stopped
 
   valkey:
-    container_name: searxng-valkey
     image: docker.io/valkey/valkey:9-alpine
-    command: valkey-server --save 30 1 --loglevel warning
-    restart: always
+    container_name: searxng-valkey
     volumes:
       - valkey-data:/data/
+    networks:
+      - internal
+    command: valkey-server --save 30 1 --loglevel warning
+    restart: unless-stopped
 
 volumes:
   core-data:
   valkey-data:
+
+networks:
+  internal:
+  gls:
+    external: true

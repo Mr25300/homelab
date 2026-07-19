@@ -1,8 +1,11 @@
 **/.env
+**/.venv
 
-/*/data/
-/*/plugins/
-/*/mods/
-/*/modpacks/
-/*/overrides/
-/*/server_files/
+minecraft/manager/allow-deny.json
+
+minecraft/*/data/
+minecraft/*/plugins/
+minecraft/*/mods/
+minecraft/*/modpacks/
+minecraft/*/overrides/
+minecraft/*/server_files/

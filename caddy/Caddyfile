@@ -1,0 +1,36 @@
+# Reload with "sudo docker restart caddy"
+
+# (cloudflare) {
+#     tls {
+#         dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+#     }
+# }
+
+{
+    acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+}
+
+searxng.gls.{$DOMAIN} {
+    # import cloudflare
+    reverse_proxy searxng:8080
+}
+
+nextcloud.gls.{$DOMAIN} {
+    # import cloudflare
+    reverse_proxy nextcloud:80
+}
+
+immich.gls.{$DOMAIN} {
+    # import cloudflare
+    reverse_proxy immich:2283
+}
+
+jellyfin.gls.{$DOMAIN} {
+    # import cloudflare
+    reverse_proxy jellyfin:8096
+}
+
+openwebui.gls.{$DOMAIN} {
+    # import cloudflare
+    reverse_proxy openwebui:8080
+}

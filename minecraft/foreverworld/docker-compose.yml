@@ -1,0 +1,41 @@
+services:
+  server:
+    image: itzg/minecraft-server:latest
+    container_name: mc-foreverworld
+    labels:
+      mc-router.host: ${IP}
+    environment: # https://docker-minecraft-server.readthedocs.io/en/latest/variables
+      UID: 1000
+      GID: 1000
+      TZ: America/Toronto
+
+      EULA: "TRUE"
+      TYPE: "VANILLA"
+      VERSION: "26.2"
+      MOTD: "Forever World"
+      DIFFICULTY: hard
+
+      ENABLE_WHITELIST: "true"
+      WHITELIST: ${WHITELIST} # Comma-separated list
+      OPS: ${OPS} # Comma-separated list
+      EXISTING_OPS_FILE: "SKIP"
+      EXISTING_WHITELIST_FILE: "SKIP"
+
+      MEMORY: "6G" # Sets INIT_MEMORY and MAX_MEMORY
+      SIMULATION_DISTANCE: "16"
+      VIEW_DISTANCE: "32"
+    volumes:
+      - /storage/minecraft/foreverworld:/data
+    networks:
+      - mc-net
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        limits:
+          memory: 9G
+          cpus: 4
+
+networks:
+  mc-net:
+    external: true

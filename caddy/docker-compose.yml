@@ -1,0 +1,28 @@
+name: caddy
+
+services:
+  caddy:
+    build: .
+    container_name: caddy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN}
+      CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - data:/data
+      - config:/config
+    networks:
+      - gls
+    restart: unless-stopped
+
+volumes:
+  data:
+  config:
+
+networks:
+  gls:
+    external: true

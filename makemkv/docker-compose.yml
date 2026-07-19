@@ -1,0 +1,20 @@
+services:
+  makemkv:
+    image: jlesage/makemkv
+    container_name: makemkv
+    ports:
+      - "5800:5800"
+    environment:
+      - USER_ID=1000
+      - GROUP_ID=1000
+    volumes:
+      - config:/config:rw
+      - /home/sebastian/ripped:/output:rw
+    devices:
+      - /dev/sr0:/dev/sr0:rwm
+      # - /dev/sg0:/dev/sg0:rwm
+    privileged: true
+    restart: unless-stopped
+
+volumes:
+  config:

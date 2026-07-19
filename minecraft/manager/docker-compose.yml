@@ -1,0 +1,43 @@
+name: mc-manager
+
+services:
+  playit:
+    image: ghcr.io/playit-cloud/playit-agent:0.17
+    container_name: mc-playit
+    network_mode: host
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+    restart: unless-stopped
+    # healthcheck: # Fixes connection breaking after waking up from suspend
+    #   test: ["CMD", "ping", "-c", "1", "1.1.1.1"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 3
+    #   start_period: 5s
+
+  router:
+    image: itzg/mc-router:latest
+    container_name: mc-router
+    ports:
+      - "48765:25565"
+    environment:
+      DEBUG: "true"
+      IN_DOCKER: "true"
+      ROUTES_CONFIG: /config/routes-config.json
+
+      AUTO_SCALE_UP: "true"
+      AUTO_SCALE_DOWN: "true"
+      AUTO_SCALE_DOWN_AFTER: 5m
+      AUTO_SCALE_ALLOW_DENY: /config/allow-deny.json
+      AUTO_SCALE_ASLEEP_MOTD: "Server offline, join to initiate startup."
+      AUTO_SCALE_LOADING_MOTD: "Server starting, please wait."
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /storage/minecraft/manager/config:/config:ro
+    networks:
+      - mc-net
+    restart: unless-stopped
+
+networks:
+  mc-net:
+    external: true

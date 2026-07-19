@@ -1,0 +1,52 @@
+name: nextcloud
+
+services:
+  nextcloud: # Port 80
+    image: lscr.io/linuxserver/nextcloud:latest
+    container_name: nextcloud
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Toronto
+
+      NC_overwrite_cli_url: "https://${DOMAIN}"
+      NC_overwritehost: "${DOMAIN}"
+      NC_trusted_proxies: "${PROXY_SUBNET}" # Found by running 'sudo docker network inspect gls | jq -r ".[0].Status.IPAM.Subnets"'
+      NC_forwarded_for_headers: "HTTP_X_FORWARDED_FOR"
+      NC_overwriteprotocol: "https"
+    volumes:
+      - /storage/nextcloud/config:/config
+      - /storage/nextcloud/data:/data
+    networks:
+      - internal
+      - gls
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  db: # Use "db" as host for nextcloud database
+    image: lscr.io/linuxserver/mariadb:latest
+    container_name: nextcloud-db
+    env_file:
+      - /storage/nextcloud/.env
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Toronto
+
+      # MYSQL_ROOT_PASSWORD: in env_file
+      MYSQL_DATABASE: nextcloud # Database name
+      MYSQL_USER: nextcloud # Database user name
+      # MYSQL_PASSWORD: in env_file
+    volumes:
+      - /storage/nextcloud/db:/config
+    networks:
+      - internal
+    restart: unless-stopped
+
+  # TODO: Add documents, notes, tasks, calendars, contacts
+
+networks:
+  internal:
+  gls:
+    external: true
