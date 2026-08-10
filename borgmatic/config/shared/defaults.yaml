@@ -1,0 +1,19 @@
+# Add exclude file for default exclusions maybe
+
+exclude_caches: true
+
+compression: auto,zstd
+encryption_passphrase: ${BORG_PASSPHRASE}
+
+archive_name_format: "sagittarius-{service}-{now:%Y-%m-%d-%H%M%S}"
+# archive_name_format: "{hostname}-{service}"
+# archive_hostname: sagittarius
+
+retries: 5
+retry_wait: 10
+
+keep_daily: 7
+keep_weekly: 4
+keep_monthly: 12
+
+check_last: 7

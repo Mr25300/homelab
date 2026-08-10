@@ -30,6 +30,10 @@ jellyfin.gls.{$DOMAIN} {
     reverse_proxy jellyfin:8096
 }
 
+calibre.gls.{$DOMAIN} {
+    reverse_proxy calibre-web:8083
+}
+
 openwebui.gls.{$DOMAIN} {
     # import cloudflare
     reverse_proxy openwebui:8080

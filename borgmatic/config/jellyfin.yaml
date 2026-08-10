@@ -1,0 +1,11 @@
+<<: !include shared/defaults.yaml
+
+constants:
+  service: jellyfin
+
+source_directories:
+  - /mnt/source/jellyfin
+
+repositories:
+  - path: /mnt/repos/sagittarius-jellyfin
+    label: "sagittarius-jellyfin-local"

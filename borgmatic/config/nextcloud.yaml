@@ -1,0 +1,17 @@
+<<: !include shared/defaults.yaml
+
+constants:
+  service: nextcloud
+
+source_directories:
+  - /mnt/source/nextcloud
+
+exclude_patterns:
+  - /mnt/source/nextcloud/db
+
+repositories:
+  - path: /mnt/repos/sagittarius-nextcloud
+    label: "sagittarius-nextcloud-local"
+
+  - path: ssh://zxlokyd1@zxlokyd1.repo.borgbase.com/./repo
+    label: "sagittarius-nextcloud-borgbase"

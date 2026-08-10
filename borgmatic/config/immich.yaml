@@ -1,0 +1,14 @@
+<<: !include shared/defaults.yaml
+
+constants:
+  service: immich
+
+source_directories:
+  - /mnt/source/immich
+
+exclude_patterns:
+  - /mnt/source/immich/postgres
+
+repositories:
+  - path: /mnt/repos/sagittarius-immich
+    label: "sagittarius-immich-local"

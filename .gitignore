@@ -1,8 +1,6 @@
 **/.env
 **/.venv
 
-minecraft/manager/allow-deny.json
-
 minecraft/*/data/
 minecraft/*/plugins/
 minecraft/*/mods/

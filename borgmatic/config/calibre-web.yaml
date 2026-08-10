@@ -1,0 +1,11 @@
+<<: !include shared/defaults.yaml
+
+constants:
+  service: calibre-web
+
+source_directories:
+  - /mnt/source/calibre-web
+
+repositories:
+  - path: /mnt/repos/sagittarius-calibre-web
+    label: "sagittarius-calibre-web-local"

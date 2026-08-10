@@ -1,0 +1,21 @@
+services:
+  calibre-web: # Port 8083
+    image: lscr.io/linuxserver/calibre-web:latest
+    container_name: calibre-web
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Toronto
+
+      DOCKER_MODS: linuxserver/mods:universal-calibre
+      # OAUTHLIB_RELAX_TOKEN_SCOPE: 1 # For Google OAuth for email server
+    volumes:
+      - /storage/calibre-web/data:/config
+      - /storage/calibre-web/library:/books
+    networks:
+      - gls
+    restart: unless-stopped
+
+networks:
+  gls:
+    external: true

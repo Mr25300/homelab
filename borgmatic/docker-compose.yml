@@ -1,0 +1,23 @@
+services:
+  borgmatic:
+    image: ghcr.io/borgmatic-collective/borgmatic:latest
+    container_name: borgmatic # hostname same as container_name
+    volumes:
+      - ./config:/etc/borgmatic.d:ro
+      # - ./ssh/config:/root/.ssh/config:ro
+      - borg-ssh:/root/.ssh # Requires creating keys in docker container
+      - /storage:/mnt/source:ro
+      - /home/sebastian/borg-backups:/mnt/repos # Switch /home/sebastian to /backups
+      - borg-cache:/root/.cache/borg
+      - borg-state:/root/.local/state/borgmatic
+    environment:
+      TZ: America/Toronto
+      BORG_PASSPHRASE: ${BORG_PASSPHRASE}
+      CRON: 0 3 * * *
+    restart: unless-stopped
+    stop_grace_period: 10m
+
+volumes:
+  borg-ssh:
+  borg-cache:
+  borg-state:

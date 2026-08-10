@@ -1,0 +1,14 @@
+<<: !include shared/defaults.yaml
+
+constants:
+  service: minecraft
+
+source_directories:
+  - /mnt/source/minecraft
+
+repositories:
+  - path: /mnt/repos/sagittarius-minecraft
+    label: "sagittarius-minecraft-local"
+
+  - path: ssh://g2h9u49t@g2h9u49t.repo.borgbase.com/./repo
+    label: "sagittarius-minecraft-borgbase"

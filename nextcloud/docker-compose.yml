@@ -16,6 +16,7 @@ services:
       NC_overwriteprotocol: "https"
     volumes:
       - /storage/nextcloud/config:/config
+      - ./valkey.config.php:/config/www/nextcloud/config/valkey.config.php:ro # For valkey
       - /storage/nextcloud/data:/data
     networks:
       - internal
@@ -23,6 +24,7 @@ services:
     restart: unless-stopped
     depends_on:
       - db
+      - valkey
 
   db: # Use "db" as host for nextcloud database
     image: lscr.io/linuxserver/mariadb:latest
@@ -44,7 +46,26 @@ services:
       - internal
     restart: unless-stopped
 
-  # TODO: Add documents, notes, tasks, calendars, contacts
+  valkey: # Port 6379
+    # Commands:
+    # sudo docker exec -it nextcloud-valkey valkey-cli
+    # SELECT 0 (or any other dbindex)
+    # keys * (should be nonempty)
+    # FLUSHDB (to clear)
+
+    image: docker.io/valkey/valkey:9-alpine
+    container_name: nextcloud-valkey
+    volumes:
+      - valkey-data:/data/
+    networks:
+      - internal
+    command: valkey-server --appendonly yes
+    restart: unless-stopped
+
+  # TODO: Add office, notes and tasks
+
+volumes:
+  valkey-data:
 
 networks:
   internal:
