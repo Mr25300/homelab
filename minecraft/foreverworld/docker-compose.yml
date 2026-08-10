@@ -16,8 +16,8 @@ services:
       DIFFICULTY: hard
 
       ENABLE_WHITELIST: "true"
-      WHITELIST: ${WHITELIST} # Comma-separated list
-      OPS: ${OPS} # Comma-separated list
+      WHITELIST: ${WHITELIST} # Comma-separated list (no spaces between)
+      OPS: ${OPS} # Comma-separated list (no spaces between)
       EXISTING_OPS_FILE: "SKIP"
       EXISTING_WHITELIST_FILE: "SKIP"
 

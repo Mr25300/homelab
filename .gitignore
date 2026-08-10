@@ -1,9 +1,2 @@
 **/.env
 **/.venv
-
-minecraft/*/data/
-minecraft/*/plugins/
-minecraft/*/mods/
-minecraft/*/modpacks/
-minecraft/*/overrides/
-minecraft/*/server_files/

@@ -17,16 +17,16 @@ services:
 
       MOTD: "All The Mods Server"
       ENABLE_WHITELIST: "true"
-      WHITELIST: "AwesomeFeet313,AKAPVP66,Ginormous_G,shubabidi,Mineor23"
-      OPS: "AwesomeFeet313"
+      WHITELIST: ${WHITELIST}
+      OPS: ${OPS}
       EXISTING_WHITELIST_FILE: "MERGE"
       EXISTING_OPS_FILE: "MERGE"
 
       ALLOW_FLIGHT: "true"
     volumes:
-      - ./data:/data
-      - ./manifests:/manifests:ro
-      - ./overrides/config:/config:ro
+      - /storage/minecraft/atm/data:/data
+      - /storage/minecraft/atm/manifests:/manifests:ro
+      - /storage/minecraft/atm/overrides/config:/config:ro
     restart: no
     stdin_open: true
     tty: true

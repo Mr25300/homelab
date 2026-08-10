@@ -18,15 +18,15 @@ services:
 
       MOTD: "Nik Hunting Time"
       ENABLE_WHITELIST: "true"
-      WHITELIST: "AwesomeFeet313,AKAPVP66,Ginormous_G,shubabidi,Mineor23,ultra_exdi"
-      OPS: "AwesomeFeet313"
+      WHITELIST: ${WHITELIST}
+      OPS: ${OPS}
       EXISTING_WHITELIST_FILE: "MERGE"
       EXISTING_OPS_FILE: "MERGE"
       ALLOW_FLIGHT: "true" # For mods
     volumes:
-      - ./data:/data
-      - ./manifests:/manifests:ro
-      - ./overrides/config:/config:ro
+      - /storage/minecraft/nikhunt/data:/data
+      - /storage/minecraft/nikhunt/manifests:/manifests:ro
+      - /storage/minecraft/nikhunt/overrides/config:/config:ro
     restart: no
     stdin_open: true
     tty: true

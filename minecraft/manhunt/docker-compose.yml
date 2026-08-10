@@ -15,13 +15,13 @@ services:
 
       MOTD: "Sebastian's Manhunt Server"
       ENABLE_WHITELIST: "true"
-      WHITELIST: "AwesomeFeet313,AKAPVP66,Ginormous_G,shubabidi,ultra_exdi"
-      OPS: "AwesomeFeet313"
+      WHITELIST: ${WHITELIST}
+      OPS: ${OPS}
       EXISTING_OPS_FILE: "MERGE"
       EXISTING_WHITELIST_FILE: "MERGE"
     volumes:
-      - ./data:/data
-      - ./plugins:/plugins:ro
+      - /storage/minecraft/manhunt/data:/data
+      - /storage/minecraft/manhunt/plugins:/plugins:ro
     restart: no
     stdin_open: true
     tty: true

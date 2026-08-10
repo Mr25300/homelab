@@ -6,6 +6,12 @@ constants:
 source_directories:
   - /mnt/source/minecraft
 
+exclude_patterns:
+  - /mnt/source/minecraft/atm
+  - /mnt/source/minecraft/manhunt
+  - /mnt/source/minecraft/modded
+  - /mnt/source/minecraft/nikhunt
+
 repositories:
   - path: /mnt/repos/sagittarius-minecraft
     label: "sagittarius-minecraft-local"

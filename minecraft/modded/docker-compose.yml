@@ -16,14 +16,14 @@ services:
 
       MOTD: "Sebastian's Modded Server"
       ENABLE_WHITELIST: "true"
-      WHITELIST: "AwesomeFeet313,AKAPVP66,Ginormous_G,shubabidi,ultra_exdi,Mineor23"
-      OPS: "AwesomeFeet313"
+      WHITELIST: ${WHITELIST} 
+      OPS: ${OPS}
       EXISTING_WHITELIST_FILE: "MERGE"
       EXISTING_OPS_FILE: "MERGE"
       ALLOW_FLIGHT: "true" # For mods
     volumes:
-      - ./data:/data
-      - ./mods:/data/mods
+      - /storage/minecraft/modded/data:/data
+      - /storage/minecraft/modded/mods:/data/mods
     restart: no
     stdin_open: true
     tty: true
