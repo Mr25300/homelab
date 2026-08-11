@@ -1,0 +1,46 @@
+name: qbittorrent
+
+services:
+  gluetun:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    # ports:
+    #   - "8080:8080" # For qbittorrent web UI
+    networks:
+      - gls
+    environment:
+      VPN_SERVICE_PROVIDER: mullvad
+      VPN_TYPE: wireguard
+      WIREGUARD_PRIVATE_KEY: ${WIREGUARD_PRIVATE_KEY}
+      WIREGUARD_ADDRESS: ${WIREGUARD_ADDRESS}
+      SERVER_COUNTRIES: Canada
+      TZ: America/Toronto
+    # devices:
+    #   - /dev/net/tun:/dev/net/tun
+    restart: unless-stopped
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    network_mode: "service:gluetun"
+    depends_on:
+      - gluetun
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Toronto
+      WEBUI_PORT: 8080
+      # TORRENTING_PORT: 6881
+    volumes:
+      - /storage/qbittorrent/config:/config
+      - /storage/qbittorrent/completed:/downloads
+      - /storage/qbittorrent/incomplete:/incomplete
+      - /storage/qbittorrent/torrents:/torrents
+    stop_grace_period: "10s"
+    restart: unless-stopped
+
+networks:
+  gls:
+    external: true

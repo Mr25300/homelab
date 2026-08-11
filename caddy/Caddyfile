@@ -38,3 +38,15 @@ openwebui.gls.{$DOMAIN} {
     # import cloudflare
     reverse_proxy openwebui:8080
 }
+
+qbittorrent.gls.{$DOMAIN} {
+    reverse_proxy gluetun:8080
+}
+
+radarr.gls.{$DOMAIN} {
+    reverse_proxy radarr:7878
+}
+
+prowlarr.gls.{$DOMAIN} {
+    reverse_proxy prowlarr:9696
+}
