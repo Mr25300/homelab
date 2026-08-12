@@ -34,10 +34,10 @@ services:
       WEBUI_PORT: 8080
       # TORRENTING_PORT: 6881
     volumes:
-      - /storage/qbittorrent/config:/config
-      - /storage/qbittorrent/completed:/downloads
-      - /storage/qbittorrent/incomplete:/incomplete
-      - /storage/qbittorrent/torrents:/torrents
+      - /data/storage/qbittorrent/config:/config
+      - /data/storage/qbittorrent/completed:/downloads
+      - /data/storage/qbittorrent/incomplete:/incomplete
+      - /data/storage/qbittorrent/torrents:/torrents
     stop_grace_period: "10s"
     restart: unless-stopped
 

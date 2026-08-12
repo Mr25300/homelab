@@ -20,8 +20,8 @@ services:
       EXISTING_OPS_FILE: "MERGE"
       EXISTING_WHITELIST_FILE: "MERGE"
     volumes:
-      - /storage/minecraft/manhunt/data:/data
-      - /storage/minecraft/manhunt/plugins:/plugins:ro
+      - /data/storage/minecraft/manhunt/data:/data
+      - /data/storage/minecraft/manhunt/plugins:/plugins:ro
     restart: no
     stdin_open: true
     tty: true

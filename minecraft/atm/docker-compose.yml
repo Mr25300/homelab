@@ -24,9 +24,9 @@ services:
 
       ALLOW_FLIGHT: "true"
     volumes:
-      - /storage/minecraft/atm/data:/data
-      - /storage/minecraft/atm/manifests:/manifests:ro
-      - /storage/minecraft/atm/overrides/config:/config:ro
+      - /data/storage/minecraft/atm/data:/data
+      - /data/storage/minecraft/atm/manifests:/manifests:ro
+      - /data/storage/minecraft/atm/overrides/config:/config:ro
     restart: no
     stdin_open: true
     tty: true

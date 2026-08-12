@@ -22,8 +22,8 @@ services:
       EXISTING_OPS_FILE: "MERGE"
       ALLOW_FLIGHT: "true" # For mods
     volumes:
-      - /storage/minecraft/modded/data:/data
-      - /storage/minecraft/modded/mods:/data/mods
+      - /data/storage/minecraft/modded/data:/data
+      - /data/storage/minecraft/modded/mods:/data/mods
     restart: no
     stdin_open: true
     tty: true

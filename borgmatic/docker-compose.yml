@@ -6,8 +6,8 @@ services:
       - ./config:/etc/borgmatic.d:ro
       # - ./ssh/config:/root/.ssh/config:ro
       - borg-ssh:/root/.ssh # Requires creating keys in docker container
-      - /storage:/mnt/source:ro
-      - /home/sebastian/borg-backups:/mnt/repos # Switch /home/sebastian to /backups
+      - /data/storage:/mnt/source:ro
+      - /data/backups/borg:/mnt/repos
       - borg-cache:/root/.cache/borg
       - borg-state:/root/.local/state/borgmatic
     environment:

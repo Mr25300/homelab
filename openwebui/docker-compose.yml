@@ -9,13 +9,10 @@ services:
       WEBUI_SECRET_KEY: ${WEBUI_SECRET_KEY}
       WEBUI_URL: https://openwebui.gls.sebastiancooper.com
     volumes:
-      - open-webui:/app/backend/data
+      - /data/storage/openwebui:/app/backend/data
     networks:
       - gls
     restart: unless-stopped
-
-volumes:
-  open-webui:
 
 networks:
   gls:

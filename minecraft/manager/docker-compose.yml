@@ -20,6 +20,7 @@ services:
     container_name: mc-router
     ports:
       - "48765:25565"
+    user: root
     environment:
       DEBUG: "true"
       IN_DOCKER: "true"
@@ -33,7 +34,7 @@ services:
       AUTO_SCALE_LOADING_MOTD: "Server starting, please wait."
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /storage/minecraft/manager/config:/config:ro
+      - /data/storage/minecraft/manager/config:/config:ro
     networks:
       - mc-net
     restart: unless-stopped

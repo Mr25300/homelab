@@ -9,8 +9,8 @@ services:
       - PGID=1000
       - TZ=America/Toronto
     volumes:
-      - /storage/jellyfin/config:/config
-      - /storage/media:/media:ro
+      - /data/storage/jellyfin/config:/config
+      - /data/storage/media:/media:ro
     networks:
       - gls
     tmpfs:

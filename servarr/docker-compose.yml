@@ -13,9 +13,9 @@ services:
       PGID: 1000
       TZ: America/Toronto
     volumes:
-      - /storage/radarr:/config
-      - /storage/media/movies:/movies
-      - /storage/qbittorrent/completed:/downloads
+      - /data/storage/radarr:/config
+      - /data/storage/media/movies:/movies
+      - /data/storage/qbittorrent/completed:/downloads
     restart: unless-stopped
 
   # sonarr:
@@ -61,7 +61,7 @@ services:
       PGID: 1000
       TZ: America/Toronto
     volumes:
-      - /storage/prowlarr:/config
+      - /data/storage/prowlarr:/config
     restart: unless-stopped
   
   # flaresolverr: # Port 8191

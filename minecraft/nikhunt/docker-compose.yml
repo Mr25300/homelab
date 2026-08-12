@@ -24,9 +24,9 @@ services:
       EXISTING_OPS_FILE: "MERGE"
       ALLOW_FLIGHT: "true" # For mods
     volumes:
-      - /storage/minecraft/nikhunt/data:/data
-      - /storage/minecraft/nikhunt/manifests:/manifests:ro
-      - /storage/minecraft/nikhunt/overrides/config:/config:ro
+      - /data/storage/minecraft/nikhunt/data:/data
+      - /data/storage/minecraft/nikhunt/manifests:/manifests:ro
+      - /data/storage/minecraft/nikhunt/overrides/config:/config:ro
     restart: no
     stdin_open: true
     tty: true

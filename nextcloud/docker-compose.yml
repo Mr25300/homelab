@@ -15,9 +15,9 @@ services:
       NC_forwarded_for_headers: "HTTP_X_FORWARDED_FOR"
       NC_overwriteprotocol: "https"
     volumes:
-      - /storage/nextcloud/config:/config
+      - /data/storage/nextcloud/config:/config
       - ./valkey.config.php:/config/www/nextcloud/config/valkey.config.php:ro # For valkey
-      - /storage/nextcloud/data:/data
+      - /data/storage/nextcloud/data:/data
     networks:
       - internal
       - gls
@@ -30,7 +30,7 @@ services:
     image: lscr.io/linuxserver/mariadb:latest
     container_name: nextcloud-db
     env_file:
-      - /storage/nextcloud/.env
+      - /data/storage/nextcloud/.env
     environment:
       PUID: 1000
       PGID: 1000
@@ -41,7 +41,7 @@ services:
       MYSQL_USER: nextcloud # Database user name
       # MYSQL_PASSWORD: in env_file
     volumes:
-      - /storage/nextcloud/db:/config
+      - /data/storage/nextcloud/db:/config
     networks:
       - internal
     restart: unless-stopped
