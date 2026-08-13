@@ -4,8 +4,7 @@ services:
     container_name: borgmatic # hostname same as container_name
     volumes:
       - ./config:/etc/borgmatic.d:ro
-      # - ./ssh/config:/root/.ssh/config:ro
-      - borg-ssh:/root/.ssh # Requires creating keys in docker container
+      - borg-ssh:/root/.ssh # Requires creating keys inside docker container shell (must have default name id_ed25519 to ensure it is detected without an ssh config
       - /data/storage:/mnt/source:ro
       - /data/backups/borg:/mnt/repos
       - borg-cache:/root/.cache/borg

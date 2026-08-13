@@ -21,7 +21,7 @@ services:
     #   - /dev/net/tun:/dev/net/tun
     restart: unless-stopped
 
-  qbittorrent:
+  qbittorrent: # Set Options > Advanced > Network Interface to tun0 to prevent torrenting without VPN
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
     network_mode: "service:gluetun"
@@ -32,8 +32,7 @@ services:
       PGID: 1000
       TZ: America/Toronto
       WEBUI_PORT: 8080
-      # TORRENTING_PORT: 6881
-    volumes:
+    volumes: # TODO: Move these to SSD to speed things up
       - /data/storage/qbittorrent/config:/config
       - /data/storage/qbittorrent/completed:/downloads
       - /data/storage/qbittorrent/incomplete:/incomplete

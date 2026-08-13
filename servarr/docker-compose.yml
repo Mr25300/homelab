@@ -18,35 +18,35 @@ services:
       - /data/storage/qbittorrent/completed:/downloads
     restart: unless-stopped
 
-  # sonarr:
-  #   image: lscr.io/linuxserver/sonarr:latest
-  #   container_name: sonarr
-  #   environment:
-  #     PUID: 1000
-  #     PGID: 1000
-  #     TZ: America/Toronto
-  #   volumes:
-  #     - /path/to/sonarr/data:/config
-  #     - /path/to/tvseries:/tv #optional
-  #     - /path/to/downloadclient-downloads:/downloads #optional
-  #   ports:
-  #     - 8989:8989
-  #   restart: unless-stopped
-  #
-  # lidarr:
-  #   image: lscr.io/linuxserver/lidarr:latest
-  #   container_name: lidarr
-  #   environment:
-  #     PUID: 1000
-  #     PGID: 1000
-  #     TZ: America/Toronto
-  #   volumes:
-  #     - /path/to/lidarr/config:/config
-  #     - /path/to/music:/music #optional
-  #     - /path/to/downloads:/downloads #optional
-  #   ports:
-  #     - 8686:8686
-  #   restart: unless-stopped
+  sonarr: # Port 8989
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    networks:
+      - gls
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Toronto
+    volumes:
+      - /data/storage/sonarr:/config
+      - /data/storage/media/tv:/tv
+      - /data/storage/qbittorrent/completed:/downloads
+    restart: unless-stopped
+
+  lidarr: # Port 8686
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    networks:
+      - gls
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Toronto
+    volumes:
+      - /data/storage/lidarr:/config
+      - /data/storage/media/music:/music
+      - /data/storage/qbittorrent/completed:/downloads
+    restart: unless-stopped
 
   prowlarr: # Port 9696
     image: lscr.io/linuxserver/prowlarr:latest

@@ -43,10 +43,18 @@ qbittorrent.gls.{$DOMAIN} {
     reverse_proxy gluetun:8080
 }
 
+prowlarr.gls.{$DOMAIN} {
+    reverse_proxy prowlarr:9696
+}
+
 radarr.gls.{$DOMAIN} {
     reverse_proxy radarr:7878
 }
 
-prowlarr.gls.{$DOMAIN} {
-    reverse_proxy prowlarr:9696
+sonarr.gls.{$DOMAIN}
+    reverse_proxy sonarr:8989
+}
+
+lidarr.gls.{$DOMAIN}
+   reverse_proxy lidarr:8686
 }
