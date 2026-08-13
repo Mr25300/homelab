@@ -16,5 +16,5 @@ repositories:
   - path: /mnt/repos/sagittarius-minecraft
     label: "sagittarius-minecraft-local"
 
-  - path: ssh://g2h9u49t@g2h9u49t.repo.borgbase.com/./repo
+  - path: ${BORGBASE_MINECRAFT_REPO}
     label: "sagittarius-minecraft-borgbase"

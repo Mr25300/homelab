@@ -13,5 +13,5 @@ repositories:
   - path: /mnt/repos/sagittarius-nextcloud
     label: "sagittarius-nextcloud-local"
 
-  - path: ssh://zxlokyd1@zxlokyd1.repo.borgbase.com/./repo
+  - path: ${BORGBASE_NEXTCLOUD_REPO}
     label: "sagittarius-nextcloud-borgbase"
