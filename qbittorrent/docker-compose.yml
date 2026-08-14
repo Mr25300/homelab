@@ -6,17 +6,15 @@ services:
     container_name: gluetun
     cap_add:
       - NET_ADMIN
-    # ports:
-    #   - "8080:8080" # For qbittorrent web UI
     networks:
       - gls
     environment:
+      TZ: America/Toronto
       VPN_SERVICE_PROVIDER: mullvad
       VPN_TYPE: wireguard
       WIREGUARD_PRIVATE_KEY: ${WIREGUARD_PRIVATE_KEY}
       WIREGUARD_ADDRESS: ${WIREGUARD_ADDRESS}
       SERVER_COUNTRIES: Canada
-      TZ: America/Toronto
     # devices:
     #   - /dev/net/tun:/dev/net/tun
     restart: unless-stopped

@@ -10,51 +10,51 @@
     acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 }
 
-searxng.gls.{$DOMAIN} {
+searxng.{$DOMAIN} {
     # import cloudflare
     reverse_proxy searxng:8080
 }
 
-nextcloud.gls.{$DOMAIN} {
+nextcloud.{$DOMAIN} {
     # import cloudflare
     reverse_proxy nextcloud:80
 }
 
-immich.gls.{$DOMAIN} {
+immich.{$DOMAIN} {
     # import cloudflare
     reverse_proxy immich:2283
 }
 
-jellyfin.gls.{$DOMAIN} {
+jellyfin.{$DOMAIN} {
     # import cloudflare
     reverse_proxy jellyfin:8096
 }
 
-calibre.gls.{$DOMAIN} {
+calibre.{$DOMAIN} {
     reverse_proxy calibre-web:8083
 }
 
-openwebui.gls.{$DOMAIN} {
+openwebui.{$DOMAIN} {
     # import cloudflare
     reverse_proxy openwebui:8080
 }
 
-qbittorrent.gls.{$DOMAIN} {
+qbittorrent.{$DOMAIN} {
     reverse_proxy gluetun:8080
 }
 
-prowlarr.gls.{$DOMAIN} {
+prowlarr.{$DOMAIN} {
     reverse_proxy prowlarr:9696
 }
 
-radarr.gls.{$DOMAIN} {
+radarr.{$DOMAIN} {
     reverse_proxy radarr:7878
 }
 
-sonarr.gls.{$DOMAIN}
+sonarr.{$DOMAIN}
     reverse_proxy sonarr:8989
 }
 
-lidarr.gls.{$DOMAIN}
+lidarr.{$DOMAIN}
    reverse_proxy lidarr:8686
 }

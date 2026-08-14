@@ -51,10 +51,10 @@ services:
   prowlarr: # Port 9696
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
-    # depends_on:
-    #   - flaresolverr
+    depends_on:
+      - flaresolverr
     networks:
-      # - prowlarr
+      - prowlarr
       - gls
     environment:
       PUID: 1000
@@ -64,17 +64,16 @@ services:
       - /data/storage/prowlarr:/config
     restart: unless-stopped
   
-  # flaresolverr: # Port 8191
-  #   image: flaresolverr/flaresolverr:latest
-  #   container_name: flaresolverr
-  #   networks:
-  #     - prowlarr
-  #   environment:
-  #     # - LOG_LEVEL=${LOG_LEVEL:-info}
-  #     TZ: America/Toronto
-  #   restart: unless-stopped
+  flaresolverr: # Port 8191
+    image: flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    networks:
+      - prowlarr
+    environment:
+      TZ: America/Toronto
+    restart: unless-stopped
 
 networks:
-  # prowlarr:
+  prowlarr:
   gls:
     external: true
