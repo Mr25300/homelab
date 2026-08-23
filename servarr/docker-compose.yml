@@ -1,6 +1,19 @@
 name: servarr
 
 services:
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    container_name: seerr
+    networks:
+      - gls
+    environment:
+      TZ: America/Toronto
+      PORT: 5055
+      LOG_LEVEL: debug
+    volumes:
+      - /data/storage/seerr:/app/config
+    restart: unless-stopped
+
   radarr: # Port 7878
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr

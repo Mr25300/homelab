@@ -30,6 +30,10 @@ jellyfin.{$DOMAIN} {
     reverse_proxy jellyfin:8096
 }
 
+seerr.{$DOMAIN} {
+    reverse_proxy seerr:5055
+}
+
 calibre.{$DOMAIN} {
     reverse_proxy calibre-web:8083
 }
@@ -43,10 +47,6 @@ qbittorrent.{$DOMAIN} {
     reverse_proxy gluetun:8080
 }
 
-prowlarr.{$DOMAIN} {
-    reverse_proxy prowlarr:9696
-}
-
 radarr.{$DOMAIN} {
     reverse_proxy radarr:7878
 }
@@ -57,4 +57,8 @@ sonarr.{$DOMAIN}
 
 lidarr.{$DOMAIN}
    reverse_proxy lidarr:8686
+}
+
+prowlarr.{$DOMAIN} {
+    reverse_proxy prowlarr:9696
 }
