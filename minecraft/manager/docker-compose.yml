@@ -19,12 +19,12 @@ services:
     image: itzg/mc-router:latest
     container_name: mc-router
     ports:
-      - "48765:25565"
-    user: root
+      - "25565:25565"
+    user: root # TODO: Investigate why this is necessary
     environment:
       DEBUG: "true"
       IN_DOCKER: "true"
-      ROUTES_CONFIG: /config/routes-config.json
+      # ROUTES_CONFIG: /config/routes-config.json
 
       AUTO_SCALE_UP: "true"
       AUTO_SCALE_DOWN: "true"
