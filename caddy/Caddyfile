@@ -10,6 +10,10 @@
     acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 }
 
+technitium.{$DOMAIN} {
+    reverse_proxy technitium:5380
+}
+
 searxng.{$DOMAIN} {
     # import cloudflare
     reverse_proxy searxng:8080

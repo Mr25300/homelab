@@ -1,0 +1,25 @@
+name: technitium
+
+services:
+  technitium: # Web UI port 5380
+    image: technitium/dns-server:latest
+    container_name: technitium
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    networks:
+      - gls
+    environment: # https://github.com/TechnitiumSoftware/DnsServer/blob/master/docker-compose.yml
+      DNS_SERVER_DOMAIN: ${DNS_SERVER_DOMAIN}
+      DNS_SERVER_LOG_FOLDER_PATH: /var/log/technitium/dns
+      # TODO: Configure everything with env vars once setup is good
+    volumes:
+      - /data/storage/technitium/config:/etc/dns
+      - /data/storage/technitium/logs:/var/log/technitium/dns
+    restart: unless-stopped
+    # sysctls: # For heavy DNS workloads
+    #   - net.ipv4.ip_local_port_range=1024 65535
+
+networks:
+  gls:
+    external: true
