@@ -15,7 +15,8 @@ services:
     container_name: paperless-db
     networks:
       - internal
-    env_file: /data/storage/paperless/.env
+    env_file:
+      - /data/storage/paperless/.env
     environment:
       POSTGRES_DB: paperless
       POSTGRES_USER: paperless
@@ -53,7 +54,8 @@ services:
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
       PAPERLESS_TIKA_ENDPOINT: http://tika:9998
 
-      PAPERLESS_FILENAME_FORMAT: {{ document_type }}/{{ correspondent }}/{{ created_year }}/{{ title }}
+      # Refresh changes with sudo docker exec paperless document_renamer (add --dry-run tag to preview)
+      PAPERLESS_FILENAME_FORMAT: "{{ owner_username }}/{{ correspondent }}/{{ document_type }}/{{ created_year }}/{{ title }} - {{ asn }}"
     volumes:
       - /data/storage/paperless/data:/usr/src/paperless/data
       - /data/storage/paperless/media:/usr/src/paperless/media
