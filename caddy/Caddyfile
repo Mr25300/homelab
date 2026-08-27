@@ -73,3 +73,7 @@ prowlarr.{$DOMAIN} {
     # import cloudflare
     reverse_proxy prowlarr:9696
 }
+
+paperless.{$DOMAIN} {
+    reverse_proxy paperless:8000
+}

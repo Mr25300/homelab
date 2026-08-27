@@ -1,0 +1,87 @@
+name: paperless
+
+services:
+  broker:
+    image: docker.io/valkey/valkey:9-alpine
+    container_name: paperless-broker
+    networks:
+      - internal
+    volumes:
+      - redisdata:/data
+    restart: unless-stopped
+
+  db:
+    image: docker.io/library/postgres:18
+    container_name: paperless-db
+    networks:
+      - internal
+    env_file: /data/storage/paperless/.env
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      # POSTGRES_PASSWORD # from env_file
+    volumes:
+      - /data/storage/paperless/pgdata:/var/lib/postgresql
+    restart: unless-stopped
+
+  webserver: # Port 8000
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless
+    depends_on:
+      - db
+      - broker
+      - gotenberg
+      - tika
+    networks:
+      - internal
+      - gls
+    env_file:
+      - .env
+      - /data/storage/paperless/.env
+    environment:
+      USERMAP_UID: 1000
+      USERMAP_GID: 1000
+      PAPERLESS_TIMEZONE: America/Toronto
+      PAPERLESS_URL: ${PAPERLESS_URL} # from .env
+      # PAPERLESS_SECRET_KEY # from /data/storage/paperless/.env
+      # PAPERLESS_DBPASS # from /data/storage/paperless/.env
+
+      PAPERLESS_REDIS: redis://broker:6379
+      PAPERLESS_DBHOST: db
+      PAPERLESS_DBENGINE: postgresql
+      PAPERLESS_TIKA_ENABLED: 1
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
+      PAPERLESS_TIKA_ENDPOINT: http://tika:9998
+
+      PAPERLESS_FILENAME_FORMAT: {{ document_type }}/{{ correspondent }}/{{ created_year }}/{{ title }}
+    volumes:
+      - /data/storage/paperless/data:/usr/src/paperless/data
+      - /data/storage/paperless/media:/usr/src/paperless/media
+      - /data/storage/paperless/export:/usr/src/paperless/export
+    restart: unless-stopped
+
+  gotenberg:
+    image: docker.io/gotenberg/gotenberg:8.34
+    container_name: paperless-gotenberg
+    networks:
+      - internal
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
+    restart: unless-stopped
+
+  tika:
+    image: docker.io/apache/tika:3.3.1.0
+    container_name: paperless-tika
+    networks:
+      - internal
+    restart: unless-stopped
+
+volumes:
+  redisdata:
+
+networks:
+  internal:
+  gls:
+    external: true
