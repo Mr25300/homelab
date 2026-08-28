@@ -29,6 +29,10 @@ immich.{$DOMAIN} {
     reverse_proxy immich:2283
 }
 
+paperless.{$DOMAIN} {
+    reverse_proxy paperless:8000
+}
+
 jellyfin.{$DOMAIN} {
     # import cloudflare
     reverse_proxy jellyfin:8096
@@ -74,6 +78,6 @@ prowlarr.{$DOMAIN} {
     reverse_proxy prowlarr:9696
 }
 
-paperless.{$DOMAIN} {
-    reverse_proxy paperless:8000
+lazylibrarian.{$DOMAIN} {
+    reverse_proxy lazylibrarian:5299
 }

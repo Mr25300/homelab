@@ -1,0 +1,23 @@
+name: lazylibrarian
+
+services:
+  lazylibrarian: # Port 5299
+    image: lscr.io/linuxserver/lazylibrarian:latest
+    container_name: lazylibrarian
+    networks:
+      - gls
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Toronto
+      DOCKER_MODS: linuxserver/mods:universal-calibre
+      # DOCKER_MODS: linuxserver/mods:universal-calibre|linuxserver/mods:lazylibrarian-ffmpeg
+    volumes:
+      - /data/storage/lazylibrarian:/config
+      - /data/storage/calibre-web/library:/books
+      - /data/storage/qbittorrent/completed:/downloads
+    restart: unless-stopped
+
+networks:
+  gls:
+    external: true
