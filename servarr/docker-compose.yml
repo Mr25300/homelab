@@ -61,6 +61,21 @@ services:
       - /data/storage/qbittorrent/completed:/downloads
     restart: unless-stopped
 
+  chaptarr: # Port 8789
+    image: chaptarr/chaptarr:latest
+    container_name: chaptarr
+    networks:
+      - gls
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Toronto
+    volumes:
+      - /data/storage/chaptarr:/config
+      - /data/storage/media/books:/books
+      - /data/storage/qbittorrent/completed:/downloads
+    restart: unless-stopped
+
   prowlarr: # Port 9696
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
