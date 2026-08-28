@@ -67,14 +67,18 @@ radarr.{$DOMAIN} {
     reverse_proxy radarr:7878
 }
 
-sonarr.{$DOMAIN}
+sonarr.{$DOMAIN} {
     # import cloudflare
     reverse_proxy sonarr:8989
 }
 
-lidarr.{$DOMAIN}
+lidarr.{$DOMAIN} {
     # import cloudflare
     reverse_proxy lidarr:8686
+}
+
+chaptarr.{$DOMAIN} {
+    reverse_proxy chaptarr:8789
 }
 
 prowlarr.{$DOMAIN} {
