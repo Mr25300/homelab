@@ -10,11 +10,10 @@ services:
       PUID: 1000
       PGID: 1000
       TZ: America/Toronto
-      DOCKER_MODS: linuxserver/mods:universal-calibre
       # DOCKER_MODS: linuxserver/mods:universal-calibre|linuxserver/mods:lazylibrarian-ffmpeg
     volumes:
       - /data/storage/lazylibrarian:/config
-      - /data/storage/calibre-web/library:/books
+      - /data/storage/media/books:/books
       - /data/storage/qbittorrent/completed:/downloads
     restart: unless-stopped
 

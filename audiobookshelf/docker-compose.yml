@@ -1,0 +1,20 @@
+name: audiobookshelf
+
+services:
+  audiobookshelf: # Port 80
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    user: 1000:1000
+    environment:
+      TZ: America/Toronto
+    networks:
+      - gls
+    volumes:
+      - /data/storage/audiobookshelf/config:/config
+      - /data/storage/audiobookshelf/metadata:/metadata
+      - /data/storage/media/books:/books
+      - /data/storage/media/podcasts:/podcasts
+    restart: unless-stopped
+
+networks:
+  gls:
+    external: true

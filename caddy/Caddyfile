@@ -48,6 +48,10 @@ calibre.{$DOMAIN} {
     reverse_proxy calibre-web:8083
 }
 
+audiobookshelf.{$DOMAIN} {
+    reverse_proxy audiobookshelf:80
+}
+
 openwebui.{$DOMAIN} {
     # import cloudflare
     reverse_proxy openwebui:8080
