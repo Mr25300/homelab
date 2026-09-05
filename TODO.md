@@ -1,0 +1,6 @@
+- [ ] Implement automatic Tailscale bootstrap script
+- [ ] Move all repetitive env vars (i.e. PUID, GUID, TZ) to a global .env file
+- [ ] Create script to automatically create .env files after prompting user for info
+- [ ] Replace hardcoded volume locations with env vars and distinguish between long-term storage path, media storage path, and temporary storage path (for qbittorrent, etc.)
+- [ ] Setup borgmatic backups for remaining service
+- [ ] Create script to mass update and start services
