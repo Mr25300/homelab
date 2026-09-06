@@ -49,6 +49,7 @@ calibre.{$DOMAIN} {
 }
 
 audiobookshelf.{$DOMAIN} {
+    encode gzip zstd
     reverse_proxy audiobookshelf:80
 }
 
