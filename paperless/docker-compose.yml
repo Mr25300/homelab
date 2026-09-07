@@ -54,8 +54,8 @@ services:
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
       PAPERLESS_TIKA_ENDPOINT: http://tika:9998
 
-      # Refresh changes with sudo docker exec paperless document_renamer (add --dry-run tag to preview)
-      PAPERLESS_FILENAME_FORMAT: "{{ owner_username }}/{{ correspondent }}/{{ document_type }}/{{ created_year }}/{{ title }} - {{ asn }}"
+      # Refresh changes with sudo docker exec -it paperless document_renamer (add --dry-run tag to preview)
+      PAPERLESS_FILENAME_FORMAT: "{{ owner_username }}/{{ correspondent }}/{{ document_type }}/{{ created_year }}/{{ created_month }}-{{ created_day }} {{ title }}"
     volumes:
       - /data/storage/paperless/data:/usr/src/paperless/data
       - /data/storage/paperless/media:/usr/src/paperless/media
