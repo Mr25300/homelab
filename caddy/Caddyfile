@@ -24,6 +24,10 @@ nextcloud.{$DOMAIN} {
     reverse_proxy nextcloud:80
 }
 
+nextcloud-collabora.{$DOMAIN} {
+    reverse_proxy nextcloud-collabora:9980
+}
+
 immich.{$DOMAIN} {
     # import cloudflare
     reverse_proxy immich:2283

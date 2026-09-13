@@ -2,13 +2,20 @@ name: nextcloud
 
 services:
   nextcloud: # Port 80
+    # TODO: Configure allow-list for WOPI requests (info in Administration settings > Office)
+
     image: lscr.io/linuxserver/nextcloud:latest
     container_name: nextcloud
+    depends_on:
+      - db
+      - valkey
+      - collabora
     environment:
       PUID: 1000
       PGID: 1000
       TZ: America/Toronto
 
+      # TODO: Make sure these actually work
       NC_overwrite_cli_url: "https://${DOMAIN}"
       NC_overwritehost: "${DOMAIN}"
       NC_trusted_proxies: "${PROXY_SUBNET}" # Found by running 'sudo docker network inspect gls | jq -r ".[0].Status.IPAM.Subnets"'
@@ -18,13 +25,15 @@ services:
       - /data/storage/nextcloud/config:/config
       - ./valkey.config.php:/config/www/nextcloud/config/valkey.config.php:ro # For valkey
       - /data/storage/nextcloud/data:/data
+      - /data/storage/paperless/media/documents/originals:/paperless:ro
+    dns:
+      # Temporary so that nextcloud can resolve the address of collabora
+      # TODO: Make entire server use DNS server instead
+      - 10.0.0.5
     networks:
       - internal
       - gls
     restart: unless-stopped
-    depends_on:
-      - db
-      - valkey
 
   db: # Use "db" as host for nextcloud database
     image: lscr.io/linuxserver/mariadb:latest
@@ -62,7 +71,21 @@ services:
     command: valkey-server --appendonly yes
     restart: unless-stopped
 
-  # TODO: Add office, notes and tasks
+  collabora: # Port 9980
+    image: collabora/code:latest
+    container_name: nextcloud-collabora
+    environment: # Fix permissions so no other service can access
+      username: ${COLLABORA_USERNAME}
+      password: ${COLLABORA_PASSWORD}
+      extra_params: --o:ssl.enable=false --o:ssl.termination=true
+      aliasgroup1: ${DOMAIN} # Where collabora can be accessed from
+    dns:
+      # Temporary so that collabora can resolve the address of nextcloud
+      # TODO: Make entire server use DNS server instead
+      - 10.0.0.5
+    networks:
+      - gls
+    restart: unless-stopped
 
 volumes:
   valkey-data:
