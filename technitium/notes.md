@@ -49,7 +49,9 @@
 # DNS APP Record
 
 **App Name:** Split Horizon
+
 **Class Path:** SplitHorizon.SimpleAddress
+
 **Record Data:**
 ```json
 {
