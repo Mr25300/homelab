@@ -12,7 +12,8 @@ The homelab is lightweight and OS-agnostic, however its current production setup
 | :--- | :--- | :--- | :--- |
 | DNS | Technitium | Create private DNS records for accessing homelab services and block malicious and/or unwanted sites| Port 53 |
 | Reverse Proxy | Caddy | Route addresses to services and automatically handle SSL certificates for HTTPS | Port 80 / 443 |
-| Cloud Storage | Immich, Nextcloud | Host photos and videos with Immich, and files, office, calendar and contacts with Nextcloud | Through Caddy |
+| Search Engine | SearXNG | Query and filter results from Google, DuckDuckGo, etc. anonymously | Through Caddy |
+| Cloud Storage | Nextcloud, Paperless, Immich | Host files, office, calendar and contacts with Nextcloud, automatically organize archival documents with Paperless, and store and process photos and videos with Immich | Through Caddy |
 | Torrenting | Gluetun, qBittorrent | Torrent behind Mullvad VPN using Gluetun to hide IP from peers in torrent swarms | Through Caddy |
 | Media Acquisition | Radarr, Sonarr, Lidarr, Chaptarr, Prowlarr | Automatically index, monitor and download (with a torrenting client) movies, TV, music and books | Through Caddy |
 | Media Playing | Jellyfin, Audiobookshelf | Add media libraries for movies, TV and music in Jellyfin, and for books and podcasts in Audiobookshelf to be played/read with progress tracking and separate user accounts | Through Caddy |
