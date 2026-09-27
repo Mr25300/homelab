@@ -7,7 +7,7 @@ source_directories:
   - /mnt/source/jellyfin
 
 exclude_patterns:
-  - "**/.aspnet/"
-  - "**/.cache/"
-  - "**/cache/"
-  - "**/log/"
+  - "sh:**/.aspnet/**"
+  - "sh:**/.cache/**"
+  - "sh:**/cache/**"
+  - "sh:**/log/**"

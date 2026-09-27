@@ -9,6 +9,6 @@ source_directories:
   - /mnt/source/openwebui
 
 exclude_patterns:
-  - "**/cache/"
-  - "**/*.db-shm"
-  - "**/*.db-wal"
+  - "sh:**/cache/**"
+  - "*.db-shm"
+  - "*.db-wal"

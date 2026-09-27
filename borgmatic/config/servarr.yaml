@@ -13,12 +13,12 @@ source_directories:
   - /mnt/source/prowlarr
 
 exclude_patterns:
-  - "**/cache/"
-  - "**/asp/"
-  - "**/logs/"
-  - "**/MediaCover/"
-  - "**/Sentry/"
-  - "**/*.db"
-  - "**/*.db-shm"
-  - "**/*.db-wal"
-  - "**/*.pid"
+  - "sh:**/cache/**"
+  - "sh:**/asp/**"
+  - "sh:**/logs/**"
+  - "sh:**/MediaCover/**"
+  - "sh:**/Sentry/**"
+  - "*.db"
+  - "*.db-shm"
+  - "*.db-wal"
+  - "*.pid"

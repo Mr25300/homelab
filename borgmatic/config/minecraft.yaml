@@ -11,9 +11,9 @@ exclude_patterns:
   - /mnt/source/minecraft/manhunt
   - /mnt/source/minecraft/modded
   - /mnt/source/minecraft/nikhunt
-  - "**/.cache/"
-  - "**/crash-reports/"
-  - "**/logs/"
+  - "sh:**/.cache/**"
+  - "sh:**/crash-reports/**"
+  - "sh:**/logs/**"
 
 repositories:
   - path: ${BORGBASE_MINECRAFT_REPO}
