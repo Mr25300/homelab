@@ -1,3 +1,4 @@
+- [ ] Add paperless consume folders as external storage in nextcloud
 - [ ] Implement automatic Tailscale bootstrap script
 - [ ] Move all repetitive env vars (i.e. PUID, GUID, TZ) to a global .env file
 - [ ] Create script to automatically create .env files after prompting user for info
