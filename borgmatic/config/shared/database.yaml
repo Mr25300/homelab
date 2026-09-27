@@ -6,6 +6,7 @@ commands:
     when: [create]
     run:
       - "mkdir -p /var/lib/borgmatic"
+      # {db_dump_cmd} is automatically escaped with quotes by borgmatic, requiring it to be run with sh
       - "sh -c {db_dump_cmd} > /var/lib/borgmatic/{service}_db.sql"
   - after: action
     when: [create]
