@@ -1,5 +1,8 @@
 # Add exclude file for default exclusions maybe
 
+# TODO: Add default exclude patterns for all services
+# https://manpages.debian.org/testing/borgbackup/borg-patterns.1.en.html
+
 exclude_caches: true
 
 compression: auto,zstd
