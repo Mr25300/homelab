@@ -1,0 +1,13 @@
+source_directories:
+  - /var/lib/borgmatic/{service}_db.sql
+
+commands:
+  - before: action
+    when: [create]
+    run:
+      - "mkdir -p /var/lib/borgmatic"
+      - "sh -c {db_dump_cmd} > /var/lib/borgmatic/{service}_db.sql"
+  - after: action
+    when: [create]
+    run:
+      - "rm -f /var/lib/borgmatic/{service}_db.sql"

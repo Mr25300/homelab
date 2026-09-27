@@ -1,22 +1,16 @@
-<<: !include [shared/defaults.yaml, shared/standard.yaml]
+<<: !include [shared/defaults.yaml, shared/standard.yaml, shared/database.yaml]
 
 constants:
   service: nextcloud
+  db_dump_cmd: "docker exec nextcloud-db mariadb-dump nextcloud"
 
 source_directories:
   - /mnt/source/nextcloud
 
-postgresql_databases:
-  - name: nextcloud
-    container: nextcloud-db
-    port: 3306
-    username: nextcloud
-    password: ${NEXTCLOUD_DB_PASSWORD}
-
 exclude_patterns:
   - /mnt/source/nextcloud/db
-  - "**/log/"
-  - "**/*.log"
+  - "sh:**/log/**"
+  - "*.log"
 
 repositories:
   - path: ${BORGBASE_NEXTCLOUD_REPO}
