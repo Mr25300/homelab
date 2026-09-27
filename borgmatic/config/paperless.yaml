@@ -1,0 +1,24 @@
+<<: !include [shared/defaults.yaml, shared/standard.yaml]
+
+constants:
+  service: paperless
+
+source_directories:
+  - /mnt/source/paperless
+
+postgresql_databases:
+  - name: paperless
+    container: paperless-db
+    port: 5432
+    username: paperless
+    password: ${PAPERLESS_DB_PASSWORD}
+
+exclude_patterns:
+  - /mnt/source/paperless/consume
+  - /mnt/source/paperless/export
+  - /mnt/source/paperless/pgdata
+  - "**/log/"
+
+repositories:
+  - path: /mnt/repos/sagittarius-paperless
+    label: "sagittarius-paperless-local"

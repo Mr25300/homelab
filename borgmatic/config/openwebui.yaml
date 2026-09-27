@@ -1,0 +1,18 @@
+<<: !include [shared/defaults.yaml, shared/standard.yaml]
+
+constants:
+  service: openwebui
+
+# TODO: Add before_backup hook to clone webui.db to webui-backup.db before backup (in order to avoid corruption)
+
+source_directories:
+  - /mnt/source/openwebui
+
+exclude_patterns:
+  - "**/cache/"
+  - "**/*.db-shm"
+  - "**/*.db-wal"
+
+repositories:
+  - path: /mnt/repos/sagittarius-openwebui
+    label: "sagittarius-openwebui-local"

@@ -1,4 +1,4 @@
-<<: !include shared/defaults.yaml
+<<: !include [shared/defaults.yaml, shared/frequent.yaml]
 
 constants:
   service: minecraft
@@ -11,6 +11,9 @@ exclude_patterns:
   - /mnt/source/minecraft/manhunt
   - /mnt/source/minecraft/modded
   - /mnt/source/minecraft/nikhunt
+  - "**/.cache/"
+  - "**/crash-reports/"
+  - "**/logs/"
 
 repositories:
   - path: /mnt/repos/sagittarius-minecraft

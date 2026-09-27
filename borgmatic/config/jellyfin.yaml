@@ -1,10 +1,16 @@
-<<: !include shared/defaults.yaml
+<<: !include [shared/defaults.yaml, shared/standard.yaml]
 
 constants:
   service: jellyfin
 
 source_directories:
   - /mnt/source/jellyfin
+
+exclude_patterns:
+  - "**/.aspnet/"
+  - "**/.cache/"
+  - "**/cache/"
+  - "**/log/"
 
 repositories:
   - path: /mnt/repos/sagittarius-jellyfin

@@ -1,13 +1,16 @@
-<<: !include shared/defaults.yaml
+<<: !include [shared/defaults.yaml, shared/heavy.yaml]
 
 constants:
   service: immich
 
 source_directories:
+  # Includes database dumps in /mnt/source/immich/library/backups generated every day at 2 AM
   - /mnt/source/immich
 
 exclude_patterns:
   - /mnt/source/immich/postgres
+  - /mnt/source/immich/library/thumbs
+  - /mnt/source/immich/library/encoded-video
 
 repositories:
   - path: /mnt/repos/sagittarius-immich

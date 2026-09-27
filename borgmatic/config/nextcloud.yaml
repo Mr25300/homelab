@@ -1,4 +1,4 @@
-<<: !include shared/defaults.yaml
+<<: !include [shared/defaults.yaml, shared/standard.yaml]
 
 constants:
   service: nextcloud
@@ -6,8 +6,17 @@ constants:
 source_directories:
   - /mnt/source/nextcloud
 
+postgresql_databases:
+  - name: nextcloud
+    container: nextcloud-db
+    port: 3306
+    username: nextcloud
+    password: ${NEXTCLOUD_DB_PASSWORD}
+
 exclude_patterns:
   - /mnt/source/nextcloud/db
+  - "**/log/"
+  - "**/*.log"
 
 repositories:
   - path: /mnt/repos/sagittarius-nextcloud

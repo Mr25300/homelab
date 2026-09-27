@@ -1,0 +1,14 @@
+<<: !include [shared/defaults.yaml, shared/standard.yaml]
+
+constants:
+  service: technitium
+
+source_directories:
+  - /mnt/source/technitium
+
+exclude_patterns:
+  - /mnt/source/technitium/logs
+
+repositories:
+  - path: /mnt/repos/sagittarius-technitium
+    label: "sagittarius-technitium-local"

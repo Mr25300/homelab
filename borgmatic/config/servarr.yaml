@@ -1,0 +1,28 @@
+<<: !include [shared/defaults.yaml, shared/standard.yaml]
+
+constants:
+  service: servarr
+
+source_directories:
+  - /mnt/source/seerr
+  # All below set to backup daily and retain 7 backups as zip files (Settings > General w/ show advanced)
+  - /mnt/source/radarr
+  - /mnt/source/sonarr
+  - /mnt/source/lidarr
+  - /mnt/source/chaptarr
+  - /mnt/source/prowlarr
+
+exclude_patterns:
+  - "**/cache/"
+  - "**/asp/"
+  - "**/logs/"
+  - "**/MediaCover/"
+  - "**/Sentry/"
+  - "**/*.db"
+  - "**/*.db-shm"
+  - "**/*.db-wal"
+  - "**/*.pid"
+
+repositories:
+  - path: /mnt/repos/sagittarius-servarr
+    label: "sagittarius-servarr-local"

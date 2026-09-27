@@ -1,0 +1,18 @@
+<<: !include [shared/defaults.yaml, shared/standard.yaml]
+
+constants:
+  service: audiobookshelf
+
+source_directories:
+  # Includes /mnt/source/audiobookshelf/metadata/backups which stores a singular backup of audiobookshelf generated daily at 2 AM
+  - /mnt/source/audiobookshelf 
+
+exclude_patterns:
+  - /mnt/source/audiobookshelf/metadata/cache
+  - /mnt/source/audiobookshelf/metadata/logs
+  - /mnt/source/audiobookshelf/metadata/streams
+  - /mnt/source/audiobookshelf/metadata/tmp
+
+repositories:
+  - path: /mnt/repos/sagittarius-audiobookshelf
+    label: "sagittarius-audiobookshelf-local"
