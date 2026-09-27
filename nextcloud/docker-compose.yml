@@ -29,13 +29,13 @@ services:
     dns:
       # Temporary so that nextcloud can resolve the address of collabora
       # TODO: Make entire server use DNS server instead
-      - 10.0.0.5
+      - 10.0.0.3
     networks:
       - internal
       - gls
     restart: unless-stopped
 
-  db: # Use "db" as host for nextcloud database
+  db: # Port 3306, use "db" as host for nextcloud database
     image: lscr.io/linuxserver/mariadb:latest
     container_name: nextcloud-db
     env_file:
@@ -82,7 +82,7 @@ services:
     dns:
       # Temporary so that collabora can resolve the address of nextcloud
       # TODO: Make entire server use DNS server instead
-      - 10.0.0.5
+      - 10.0.0.3
     networks:
       - gls
     restart: unless-stopped

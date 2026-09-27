@@ -10,7 +10,7 @@ services:
       - redisdata:/data
     restart: unless-stopped
 
-  db:
+  db: # Port 5432
     image: docker.io/library/postgres:18
     container_name: paperless-db
     networks:

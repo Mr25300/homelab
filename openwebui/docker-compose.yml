@@ -7,7 +7,7 @@ services:
     environment:
       # OLLAMA_BASE_URL: http://127.0.0.1:11434
       WEBUI_SECRET_KEY: ${WEBUI_SECRET_KEY}
-      WEBUI_URL: https://openwebui.gls.sebastiancooper.com
+      WEBUI_URL: ${WEBUI_URL}
     volumes:
       - /data/storage/openwebui:/app/backend/data
     networks:
