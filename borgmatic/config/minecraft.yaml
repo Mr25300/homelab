@@ -16,8 +16,5 @@ exclude_patterns:
   - "**/logs/"
 
 repositories:
-  - path: /mnt/repos/sagittarius-minecraft
-    label: "sagittarius-minecraft-local"
-
   - path: ${BORGBASE_MINECRAFT_REPO}
     label: "sagittarius-minecraft-borgbase"

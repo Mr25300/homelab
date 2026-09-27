@@ -22,7 +22,3 @@ exclude_patterns:
   - "**/*.db-shm"
   - "**/*.db-wal"
   - "**/*.pid"
-
-repositories:
-  - path: /mnt/repos/sagittarius-servarr
-    label: "sagittarius-servarr-local"

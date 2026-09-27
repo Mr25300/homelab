@@ -12,7 +12,3 @@ exclude_patterns:
   - "**/cache/"
   - "**/*.db-shm"
   - "**/*.db-wal"
-
-repositories:
-  - path: /mnt/repos/sagittarius-openwebui
-    label: "sagittarius-openwebui-local"

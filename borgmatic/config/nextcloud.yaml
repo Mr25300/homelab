@@ -19,8 +19,5 @@ exclude_patterns:
   - "**/*.log"
 
 repositories:
-  - path: /mnt/repos/sagittarius-nextcloud
-    label: "sagittarius-nextcloud-local"
-
   - path: ${BORGBASE_NEXTCLOUD_REPO}
     label: "sagittarius-nextcloud-borgbase"

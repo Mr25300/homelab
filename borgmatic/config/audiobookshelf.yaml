@@ -12,7 +12,3 @@ exclude_patterns:
   - /mnt/source/audiobookshelf/metadata/logs
   - /mnt/source/audiobookshelf/metadata/streams
   - /mnt/source/audiobookshelf/metadata/tmp
-
-repositories:
-  - path: /mnt/repos/sagittarius-audiobookshelf
-    label: "sagittarius-audiobookshelf-local"

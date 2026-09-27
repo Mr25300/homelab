@@ -9,6 +9,10 @@ archive_name_format: "sagittarius-{service}-{now:%Y-%m-%d-%H%M%S}"
 # archive_name_format: "{hostname}-{service}"
 # archive_hostname: sagittarius
 
+repositories:
+  - path: "/mnt/repos/sagittarius-{service}"
+    label: "sagittarius-{service}-local"
+
 retries: 5
 retry_wait: 10
 

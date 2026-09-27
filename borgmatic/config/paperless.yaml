@@ -18,7 +18,3 @@ exclude_patterns:
   - /mnt/source/paperless/export
   - /mnt/source/paperless/pgdata
   - "**/log/"
-
-repositories:
-  - path: /mnt/repos/sagittarius-paperless
-    label: "sagittarius-paperless-local"

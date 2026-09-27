@@ -11,7 +11,3 @@ exclude_patterns:
   - "**/.cache/"
   - "**/cache/"
   - "**/log/"
-
-repositories:
-  - path: /mnt/repos/sagittarius-jellyfin
-    label: "sagittarius-jellyfin-local"

@@ -11,7 +11,3 @@ exclude_patterns:
   - /mnt/source/immich/postgres
   - /mnt/source/immich/library/thumbs
   - /mnt/source/immich/library/encoded-video
-
-repositories:
-  - path: /mnt/repos/sagittarius-immich
-    label: "sagittarius-immich-local"
