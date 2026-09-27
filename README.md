@@ -12,6 +12,7 @@ The homelab is lightweight and OS-agnostic, however its current production setup
 | :--- | :--- | :--- | :--- |
 | DNS | Technitium | Create private DNS records for accessing homelab services and block malicious and/or unwanted sites| Port 53 |
 | Reverse Proxy | Caddy | Route addresses to services and automatically handle SSL certificates for HTTPS | Port 80 / 443 |
+| Backups | Borgmatic | Automatically back up state data, configuration files, and databases of other services to local and remote (BorgBase) Borg repositories | SSH |
 | Search Engine | SearXNG | Query and filter results from Google, DuckDuckGo, etc. anonymously | Through Caddy |
 | Cloud Storage | Nextcloud, Paperless, Immich | Host files, office, calendar and contacts with Nextcloud, automatically organize archival documents with Paperless, and store and process photos and videos with Immich | Through Caddy |
 | Torrenting | Gluetun, qBittorrent | Torrent behind Mullvad VPN using Gluetun to hide IP from peers in torrent swarms | Through Caddy |
