@@ -1,3 +1,4 @@
+- [ ] Test backup restoration for all services
 - [ ] Add paperless consume folders as external storage in nextcloud
 - [ ] Implement automatic Tailscale bootstrap script
 - [ ] Move all repetitive env vars (i.e. PUID, GUID, TZ) to a global .env file
