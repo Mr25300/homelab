@@ -1,0 +1,14 @@
+<<: !include [shared/defaults.yaml, shared/standard.yaml]
+
+constants:
+  service: vaultwarden
+
+# TODO: Should dump sqlite db instead of copying the db file
+source_directories:
+  - /mnt/source/vaultwarden
+
+exclude_patterns:
+  - /mnt/source/vaultwarden/icon_cache
+  - /mnt/source/vaultwarden/tmp
+  - "sh:**/*.sqlite3-shm"
+  - "sh:**/*.sqlite3-wal"
