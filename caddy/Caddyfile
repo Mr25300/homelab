@@ -14,6 +14,10 @@ technitium.{$DOMAIN} {
     reverse_proxy technitium:5380
 }
 
+vaultwarden.{$DOMAIN} {
+    reverse_proxy vaultwarden:80
+}
+
 searxng.{$DOMAIN} {
     # import cloudflare
     reverse_proxy searxng:8080

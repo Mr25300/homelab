@@ -1,0 +1,15 @@
+services:
+  vaultwarden: # Port 80
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    networks:
+      - gls
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - /data/storage/vaultwarden:/data/
+    restart: unless-stopped
+
+networks:
+  gls:
+    external: true
