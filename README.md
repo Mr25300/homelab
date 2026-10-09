@@ -1,10 +1,10 @@
 # Overview
-This project is a personal homelab containing detailed configuration files for deploying cloud storage, media apps and game servers through Docker Compose.
+This project is a personal homelab containing detailed configuration files for self-hosting cloud storage, media management, automated backups, privacy-focused routing, game servers and more through Docker Compose.
 
 # Production Setup
-The homelab is lightweight and OS-agnostic, however its current production setup details are as follows:
-- **Hardware & OS**: The homelab runs on a custom-built headless Debian server, with all work and maintenance done through SSH.
-- **Data**: A hard drive is mounted to /data/storage in which all media is stored and important, long-term Docker volumes are bind mounted in.
+The configuration is lightweight and OS-agnostic, however the homelab's current production setup details are as follows:
+- **Hardware & OS**: The homelab runs on a self-built headless Debian server, with all work and maintenance done through SSH.
+- **Data**: A hard drive is mounted to `/data/storage` in which all media is stored and important, long-term Docker volumes are bind mounted in.
 - **Networking**: The server is accessed locally via its local subnet IP and remotely via Tailscale, with the DNS server set up with split-horizon resolution to map custom addresses to the right IP depending on whether the server is accessed through LAN or Tailscale.
 
 # Services
