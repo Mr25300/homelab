@@ -1,9 +1,14 @@
+- [ ] Create script to automatically start a service with global and service specific --env-file flag
+- [ ] Replace hardcoded volume locations with env vars and distinguish between long-term storage path, media storage path, and temporary storage path (for qbittorrent, etc.)
+- [ ] Create script to mass update and start services
+- [ ] Change gls network name to something more generic (maybe make it an env var)
+- [ ] Make gls and mc-net networks get created through a script
+- [ ] Go through all containers and remove access to other services through DNS unless required (i.e. for nextcloud and nextcloud-collabora)
+- [ ] Go through every container's privileges and ensure as little as possible
 - [ ] Test backup restoration for all services
 - [ ] Add paperless consume folders as external storage in nextcloud
 - [ ] Implement automatic Tailscale bootstrap script
 - [ ] Move all repetitive env vars (i.e. PUID, GUID, TZ) to a global .env file
 - [ ] Create script to automatically create .env files after prompting user for info
-- [ ] Replace hardcoded volume locations with env vars and distinguish between long-term storage path, media storage path, and temporary storage path (for qbittorrent, etc.)
-- [ ] Change gls network name to something more generic (maybe make it an env var)
-- [ ] Setup borgmatic backups for remaining service
-- [ ] Create script to mass update and start services
+- [ ] Fix nextcloud-collabora server errors
+- [ ] Go through ALL TODO comments
