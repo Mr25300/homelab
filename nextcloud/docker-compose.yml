@@ -26,10 +26,6 @@ services:
       - ./valkey.config.php:/config/www/nextcloud/config/valkey.config.php:ro # For valkey
       - /data/storage/nextcloud/data:/data
       - /data/storage/paperless/media/documents/originals:/paperless:ro
-    dns:
-      # Temporary so that nextcloud can resolve the address of collabora
-      # TODO: Make entire server use DNS server instead
-      - 10.0.0.3
     networks:
       - internal
       - gls
@@ -79,10 +75,6 @@ services:
       password: ${COLLABORA_PASSWORD}
       extra_params: --o:ssl.enable=false --o:ssl.termination=true
       aliasgroup1: ${DOMAIN} # Where collabora can be accessed from
-    dns:
-      # Temporary so that collabora can resolve the address of nextcloud
-      # TODO: Make entire server use DNS server instead
-      - 10.0.0.3
     networks:
       - gls
     restart: unless-stopped
