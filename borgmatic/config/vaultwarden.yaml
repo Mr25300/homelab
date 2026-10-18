@@ -10,5 +10,5 @@ source_directories:
 exclude_patterns:
   - /mnt/source/vaultwarden/icon_cache
   - /mnt/source/vaultwarden/tmp
-  - "sh:**/*.sqlite3-shm"
-  - "sh:**/*.sqlite3-wal"
+  - "*.sqlite3-shm"
+  - "*.sqlite3-wal"

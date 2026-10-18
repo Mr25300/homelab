@@ -9,7 +9,7 @@ source_directories:
 
 exclude_patterns:
   - /mnt/source/nextcloud/db
-  - "sh:**/log/**"
+  - "sh:**/log"
   - "*.log"
 
 repositories:

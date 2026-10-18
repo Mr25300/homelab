@@ -11,4 +11,4 @@ exclude_patterns:
   - /mnt/source/paperless/consume
   - /mnt/source/paperless/export
   - /mnt/source/paperless/pgdata
-  - "sh:**/log/**"
+  - "sh:**/log"
