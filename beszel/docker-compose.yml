@@ -1,0 +1,50 @@
+name: beszel
+
+services:
+  beszel: # Port 8090
+    image: henrygd/beszel:latest
+    container_name: beszel
+    networks:
+      - gls
+    environment:
+      APP_URL: ${APP_URL}
+    volumes:
+      - /data/storage/beszel/data:/beszel_data
+      - beszel-socket:/beszel_socket
+    restart: unless-stopped
+
+  beszel-agent:
+    image: henrygd/beszel-agent:alpine
+    container_name: beszel-agent
+    depends_on:
+      - beszel
+    network_mode: host
+    environment:
+      LISTEN: /beszel_socket/beszel.sock
+      HUB_URL: ${APP_URL}
+      TOKEN: ${AGENT_TOKEN}
+      KEY: ${AGENT_KEY}
+      FILESYSTEM: "dm-2__OS"
+      EXTRA_FILESYSTEMS: "home__Home,storage__Storage,backups__Backups"
+    volumes:
+      - /data/storage/beszel/agent-data:/var/lib/beszel-agent
+      - beszel-socket:/beszel_socket
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Monitor other partitions
+      - /home:/extra-filesystems/home__Home:ro
+      - /data/storage:/extra-filesystems/storage__Storage:ro
+      - /data/backups:/extra-filesystems/backups__Backups:ro
+    devices: # For SMART monitoring
+      - /dev/sda:/dev/sda:ro
+      - /dev/sdb:/dev/sdb:ro
+    cap_add:
+      - SYS_RAWIO
+      # - SYS_ADMIN # Only needed for NVMe
+    restart: unless-stopped
+
+networks:
+  gls:
+    external: true
+
+volumes:
+  beszel-socket:
