@@ -17,6 +17,9 @@ services:
       - config:/config
     networks:
       - gls
+    dns: # Requesting certificates does not work with Technitium (TODO: find out why)
+      - 9.9.9.9
+      - 1.1.1.1
     restart: unless-stopped
 
 volumes:
