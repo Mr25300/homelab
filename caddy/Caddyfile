@@ -10,6 +10,10 @@
     acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 }
 
+health.{$DOMAIN} {
+    respond "Caddy Proxy OK" 200
+}
+
 technitium.{$DOMAIN} {
     reverse_proxy technitium:5380
 }
@@ -93,4 +97,12 @@ chaptarr.{$DOMAIN} {
 prowlarr.{$DOMAIN} {
     # import cloudflare
     reverse_proxy prowlarr:9696
+}
+
+uptime-kuma.{$DOMAIN} {
+    reverse_proxy uptime-kuma:3001
+}
+
+beszel.{$DOMAIN} {
+    reverse_proxy beszel:8090
 }
