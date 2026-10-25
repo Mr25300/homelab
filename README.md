@@ -13,6 +13,7 @@ The configuration is lightweight and OS-agnostic, however the homelab's current 
 | DNS | Technitium | Create private DNS records for accessing homelab services and block malicious and/or unwanted sites| Port 53 |
 | Reverse Proxy | Caddy | Route addresses to services and automatically handle SSL certificates for HTTPS | Port 80 / 443 |
 | Backups | Borgmatic | Automatically back up state data, configuration files, and databases of other services to local and remote (BorgBase) Borg repositories | SSH |
+| Monitoring | Uptime Kuma, Beszel | Monitor service uptime with Uptime Kuma, alongside CPU, GPU, memory, and disk usage with Beszel, with automated event alerts (i.e. when a service is unreachable) | Through Caddy |
 | Password Manager | Vaultwarden | Host password manager server accessible through Bitwarden browser extension and mobile app | Through Caddy |
 | Cloud Storage | Nextcloud, Paperless, Immich | Host files, office, calendar and contacts with Nextcloud, automatically organize archival documents with Paperless, and store and process photos and videos with Immich | Through Caddy |
 | Search Engine | SearXNG | Query and filter results from Google, DuckDuckGo, etc. anonymously | Through Caddy |
@@ -34,4 +35,11 @@ cd /path/to/service/folder
 
 sudo docker compose pull # Pull/update images
 sudo docker compose up -d # Deploy/re-deploy containers
+```
+
+To update all services:
+```bash
+cd /path/to/homelab/folder
+
+sudo ./scripts/update-all
 ```
