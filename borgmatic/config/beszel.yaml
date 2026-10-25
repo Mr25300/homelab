@@ -1,0 +1,14 @@
+<<: !include [shared/defaults.yaml, shared/standard.yaml]
+
+constants:
+  service: beszel
+
+# TODO: Make container stop during backup
+
+source_directories:
+  - /mnt/source/beszel
+
+exclude_patterns:
+  - /mnt/source/beszel/data/.notify
+  - "*.db-shm"
+  - "*.db-wal"

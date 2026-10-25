@@ -1,0 +1,14 @@
+<<: !include [shared/defaults.yaml, shared/standard.yaml]
+
+constants:
+  service: uptime-kuma
+
+# TODO: Make container stop during backup
+
+source_directories:
+  - /mnt/source/uptime-kuma
+
+exclude_patterns:
+  - /mnt/source/uptime-kuma/screenshots
+  - "*.db-shm"
+  - "*.db-wal"
