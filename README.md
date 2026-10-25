@@ -41,5 +41,5 @@ To update all services:
 ```bash
 cd /path/to/homelab/folder
 
-sudo ./scripts/update-all
+sudo ./scripts/update-all.sh
 ```
