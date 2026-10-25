@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [ "$EUID" -ne 0 ]; then
+    echo "Must run as root"
+    exit 1
+fi
+
 HOMELAB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 for stack_dir in "$HOMELAB_DIR"/*; do
@@ -9,7 +14,7 @@ for stack_dir in "$HOMELAB_DIR"/*; do
         (
             cd "$stack_dir" || exit 1
 
-            running_containers=$(sudo docker compose ps -q --status running)
+            running_containers=$(docker compose ps -q --status running)
 
             if [ -z "$running_containers" ]; then
                 echo "Skipping update: $stack_name"
@@ -18,15 +23,15 @@ for stack_dir in "$HOMELAB_DIR"/*; do
             
             echo "Checking for updates: $stack_name"
             
-            sudo docker compose pull
+            docker compose pull
             
             needs_update=false
-            images=$(sudo docker compose config --images)
+            images=$(docker compose config --images)
             
             for cid in $running_containers; do
-                container_img_id=$(sudo docker inspect --format='{{.Image}}' "$cid")
-                container_img_name=$(sudo docker inspect --format='{{.Config.Image}}' "$cid")
-                local_img_id=$(sudo docker image inspect --format='{{.Id}}' "$container_img_name")
+                container_img_id=$(docker inspect --format='{{.Image}}' "$cid")
+                container_img_name=$(docker inspect --format='{{.Config.Image}}' "$cid")
+                local_img_id=$(docker image inspect --format='{{.Id}}' "$container_img_name")
             
                 if [[ "$container_img_id" != "$local_img_id" ]]; then
                     needs_update=true
@@ -36,7 +41,7 @@ for stack_dir in "$HOMELAB_DIR"/*; do
             if [ "$needs_update" = true ]; then
                 echo "Restarting: $stack_name"
             
-                sudo docker compose up -d --remove-orphans
+                docker compose up -d --remove-orphans
             fi
         )
     fi
