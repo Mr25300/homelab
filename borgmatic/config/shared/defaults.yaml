@@ -26,3 +26,10 @@ checks:
     frequency: 1 month
 
 check_last: 3
+
+# uptime_kuma:
+#   push_url: {kuma_push_url}
+#   states:
+#     - start
+#     - finish
+#     - fail

@@ -4,6 +4,7 @@ constants:
   service: uptime-kuma
 
 # TODO: Make container stop during backup
+# TODO: Find out way to make this backup reliable while also pinging uptime kuma
 
 source_directories:
   - /mnt/source/uptime-kuma
