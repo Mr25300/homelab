@@ -13,7 +13,7 @@ services:
       VPN_SERVICE_PROVIDER: mullvad
       VPN_TYPE: wireguard
       WIREGUARD_PRIVATE_KEY: ${WIREGUARD_PRIVATE_KEY}
-      WIREGUARD_ADDRESS: ${WIREGUARD_ADDRESS}
+      WIREGUARD_ADDRESSES: ${WIREGUARD_ADDRESS}
       SERVER_COUNTRIES: Canada
     # devices:
     #   - /dev/net/tun:/dev/net/tun
