@@ -99,6 +99,14 @@ prowlarr.{$DOMAIN} {
     reverse_proxy prowlarr:9696
 }
 
+frigate.{$DOMAIN} {
+    reverse_proxy frigate:8971
+}
+
+home-assistant.{$DOMAIN} {
+    reverse_proxy 10.0.0.2:8123
+}
+
 uptime-kuma.{$DOMAIN} {
     reverse_proxy uptime-kuma:3001
 }
