@@ -19,7 +19,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /data/storage/frigate:/config
-      # - /data/storage/recordings:/media/frigate
+      # - /data/recordings:/media/frigate
       - type: tmpfs # 1GB in-memory filesystem for recording segment storage
         target: /tmp/cache
         tmpfs:
