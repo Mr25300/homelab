@@ -1,0 +1,32 @@
+name: frigate
+
+services:
+  frigate:
+    # Port 8971: Authenticated UI and API access (HTTPS)
+    # Port 8554: RTSP feed from go2rtc
+    image: ghcr.io/blakeblackshear/frigate:stable
+    container_name: frigate
+    # privileged: true # This may not be necessary for all setups
+    networks:
+      - gls
+    ports:
+      - "8555:8555" # WebRTC over TCP
+      - "8555:8555/udp" # WebRTC over UDP
+    environment:
+      TZ: "America/Toronto"
+      FRIGATE_RTSP_PASSWORD: ${FRIGATE_RTSP_PASSWORD}
+    shm_size: "290mb" # https://docs.frigate.video/frigate/installation/#calculating-required-shm-size
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /data/storage/frigate:/config
+      # - /data/storage/recordings:/media/frigate
+      - type: tmpfs # 1GB in-memory filesystem for recording segment storage
+        target: /tmp/cache
+        tmpfs:
+          size: 1000000000
+    stop_grace_period: 30s # Allow enough time to shut down the various services
+    restart: unless-stopped
+
+networks:
+  gls:
+    external: true
