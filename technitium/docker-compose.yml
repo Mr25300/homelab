@@ -1,8 +1,7 @@
 name: technitium
 
 services:
-  # NOTE: Using 10.0.0.2 as the DNS server in /etc/docker/daemon.json causes DNS queries from Tailscale devices to come from the docker subnet, resulting in an incorrect return IP from the APP record
-  # TODO: Test if above occurs and if so find workaround
+  # NOTE: Using 10.0.0.2 as the docker DNS server in /etc/docker/daemon.json causes DNS queries from Tailscale devices to come from the docker subnet, resulting in an incorrect return IP from the APP record
 
   technitium: # Web UI port 5380
     image: technitium/dns-server:latest
@@ -12,6 +11,8 @@ services:
       - "53:53/tcp"
     networks:
       - gls
+    dns:
+      - 10.0.0.2
     environment: # https://github.com/TechnitiumSoftware/DnsServer/blob/master/docker-compose.yml
       DNS_SERVER_DOMAIN: ${DNS_SERVER_DOMAIN}
       DNS_SERVER_LOG_FOLDER_PATH: /var/log/technitium/dns

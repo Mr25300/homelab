@@ -29,6 +29,8 @@ services:
     networks:
       - internal
       - gls
+    dns:
+      - 10.0.0.2
     restart: unless-stopped
 
   db: # Port 3306, use "db" as host for nextcloud database
@@ -77,6 +79,8 @@ services:
       aliasgroup1: ${DOMAIN} # Where collabora can be accessed from
     networks:
       - gls
+    dns:
+      - 10.0.0.2
     restart: unless-stopped
 
 volumes:
