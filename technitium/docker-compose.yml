@@ -11,8 +11,6 @@ services:
       - "53:53/tcp"
     networks:
       - gls
-    dns:
-      - 10.0.0.2
     environment: # https://github.com/TechnitiumSoftware/DnsServer/blob/master/docker-compose.yml
       DNS_SERVER_DOMAIN: ${DNS_SERVER_DOMAIN}
       DNS_SERVER_LOG_FOLDER_PATH: /var/log/technitium/dns
