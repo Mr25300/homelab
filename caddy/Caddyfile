@@ -15,7 +15,7 @@ health.{$DOMAIN} {
 }
 
 technitium.{$DOMAIN} {
-    reverse_proxy technitium:5380
+    reverse_proxy 172.18.0.1:5380 # gls bridge gateway IP (accesses host machine)
 }
 
 vaultwarden.{$DOMAIN} {
@@ -104,7 +104,7 @@ frigate.{$DOMAIN} {
 }
 
 home-assistant.{$DOMAIN} {
-    reverse_proxy 10.0.0.2:8123
+    reverse_proxy 172.18.0.1:8123
 }
 
 uptime-kuma.{$DOMAIN} {
