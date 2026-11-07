@@ -30,7 +30,7 @@ services:
       - internal
       - gls
     dns:
-      - 10.0.0.2
+      - 172.18.0.1
     restart: unless-stopped
 
   db: # Port 3306, use "db" as host for nextcloud database
@@ -80,7 +80,7 @@ services:
     networks:
       - gls
     dns:
-      - 10.0.0.2
+      - 172.18.0.1
     restart: unless-stopped
 
 volumes:
