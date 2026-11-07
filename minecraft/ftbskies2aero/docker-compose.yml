@@ -1,0 +1,44 @@
+services:
+  server:
+    image: itzg/minecraft-server:latest
+    container_name: mc-ftbskies2aero
+    labels:
+      mc-router.host: ${IP}
+    environment: # https://docker-minecraft-server.readthedocs.io/en/latest/variables/#rcon
+      EULA: "TRUE"
+
+      TYPE: "AUTO_CURSEFORGE"
+      CF_API_KEY: ${CF_API_KEY}
+      CF_PAGE_URL: "https://www.curseforge.com/minecraft/modpacks/ftb-skies-2-aero/download/9283927"
+      # CF_MODPACK_MANIFEST: /manifests/manifest.json
+      # CF_SLUG: "custom"
+      CF_FORCE_INCLUDE_MODS: "ctm,cc-tweaked"
+      # CF_FORCE_SYNCHRONIZE: true
+
+      MEMORY: "14G"
+      SIMULATION_DISTANCE: "12"
+      VIEW_DISTANCE: "12"
+
+      MOTD: "FTB Skies 2 Aero Server"
+      ENABLE_WHITELIST: "true"
+      WHITELIST: ${WHITELIST}
+      OPS: ${OPS}
+      EXISTING_WHITELIST_FILE: "SKIP"
+      EXISTING_OPS_FILE: "SKIP"
+    volumes:
+      - /data/storage/minecraft/ftbskies2aero/data:/data
+      - /data/storage/minecraft/ftbskies2aero/manifests:/manifests:ro
+    restart: no
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        limits:
+          memory: 14G
+          cpus: '4'
+    networks:
+      - mc-net
+
+networks:
+  mc-net:
+    external: true
