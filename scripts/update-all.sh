@@ -60,3 +60,7 @@ update_stack() {
 }
 
 update_stack "$HOMELAB_DIR"
+
+echo "Pruning old images"
+
+docker image prune -f
